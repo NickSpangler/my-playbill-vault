@@ -1,0 +1,3 @@
+class PlaybillsController < ApplicationController
+    
+end
