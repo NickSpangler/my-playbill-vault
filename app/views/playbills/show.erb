@@ -1,0 +1,48 @@
+<h1 style="text-align: center;"><%= @current_user.username %>'s Playbill Vault:</h1>
+
+<div class="topnav" style="text-align:center">
+  <a href="/playbills" style="padding:5px">My Collection</a>
+  <a class="active" href="/playbills/new" style="padding:5px">Add New Playbill</a>
+  <a href="/friends" style="padding:5px">Friends</a>
+  <a href="/logout" style="padding:5px">Log Out</a>
+</div>
+<br>
+
+<h1 style="text-align:center"><%= @playbill.title %></h1>
+<br>
+
+<div class="float-container" style="display: flex;">
+
+  <div class="float-child" style="flex: 1;">
+    <div class="left">
+        <img src="<%= @playbill.image_url %>" width="400px">
+    </div>
+  </div>
+  
+  <div class="float-child"  style="flex: 1;">
+    <div class="right">
+        <h2>Performance Date: 
+            <% if @playbill.performance_date != "" %>
+            <%= Time.parse(@playbill.performance_date).strftime("%B %d, %Y") %>
+            <% else %>
+            Once Upon a Time...
+            <% end %>
+        </h2>
+
+        <img src= "/images/stars/<%= @playbill.rating.to_s %>_stars.png" style="height:40px">
+
+        <h2>My Review:
+        </h2>
+        
+        <p><%= @playbill.review %></p>
+
+   
+    </div>
+  </div>
+</div>
+ <p style="text-align:center; padding:10px">
+            <button style="padding:5px; margin:5px">Edit Playbill</button><button type="submit" form="delete" style="padding:5px">Delete Playbill</button>
+            <form method="POST" action="/playbills/<%= @playbill.id %>" id="delete">
+            <input type="hidden" name="_method" value="DELETE">
+            </form>
+        </p>

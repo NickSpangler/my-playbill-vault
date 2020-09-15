@@ -1,0 +1,46 @@
+<h1 style="text-align:center;"><span style="font-family:PL Latin Bold">MY PLAYBILL VAULT</span></h1>
+<% site = "https://playbill.com/productions?venue-type=broadway" %>
+<% doc = Nokogiri::HTML(open(site)) %>
+
+<table style="margin-left: auto; margin-right: auto;">
+    <tr>
+        <td style="padding:15px">
+            <img src="/images/playbill_images/the_book_of_mormon.jpeg" width="150">
+        </td>
+        <td style="padding:15px">
+            <img src="/images/playbill_images/cinderella.jpeg" width="150">
+        </td>
+        <td style="padding:15px">
+            <img src="/images/playbill_images/hamilton.jpeg" width="150">
+        </td>
+        <td style="padding:15px">
+            <img src="/images/playbill_images/it_shoulda_been_you.jpeg" width="150">
+        </td>
+        <td style="padding:15px">
+            <img src="/images/playbill_images/tootsie.jpeg" width="150">
+        </td>
+    </tr>
+
+    <tr>
+        <td style="padding:15px">
+            <img src="/images/playbill_images/dreamgirls.jpeg" width="150">
+        </td>
+        <td style="padding:15px">
+            <img src="/images/playbill_images/rent.jpeg" width="150">
+        </td>
+        <td style="padding:15px">
+            <img src="/images/playbill_images/jesus_christ_superstar.jpeg" width="150">
+        </td>
+        <td style="padding:15px">
+            <img src="/images/playbill_images/the_secret_garden.jpeg" width="150">
+        </td>
+        <td style="padding:15px">
+            <img src="/images/playbill_images/fun_home.jpeg" width="150">
+        </td>
+    </tr>
+</table>
+
+<nav style="text-align: center;">
+    <a href="/login"><button type="submit" title="Log In" style="padding: 0; border: none; background: none;"><img src="/images/Login Button.png" height="40px"></button></a>
+    <a href="/signup"><button type="submit" title="Sign Up" style="padding: 0; border: none; background: none;"><img src="/images/Signup Button.png" height="40px"></button></a>
+</nav>

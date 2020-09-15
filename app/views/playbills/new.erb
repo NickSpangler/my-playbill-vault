@@ -1,0 +1,43 @@
+<h1 style="text-align: center;"><%= @current_user.username %>'s Playbill Vault:</h1>
+
+<div class="topnav" style="text-align:center">
+  <a href="/playbills" style="padding:5px">My Collection</a>
+  <a class="active" href="/playbills/new" style="padding:5px">Add New Playbill</a>
+  <a href="/friends" style="padding:5px">Friends</a>
+  <a href="/logout" style="padding:5px">Log Out</a>
+</div>
+
+<br>
+<h1 style="text-align: center; font-family: PL Latin Bold;">Add a new PLAYBILL to your collection:</h1>
+
+<h3 style="text-align: center;">Select a playbill from a currently running Broadway show, or search older shows to add an older playbill.</h3>
+<p>
+<form action="/playbills/search" method="POST">
+    <label for="search">Search:</label>
+    <input id="search" type="text" name="search" placeholder="Search older shows..." size="40">
+    <input type="submit" value="Search">
+</form>
+</p>
+    <br>
+<h2 style="text-align:center">Currently Running Shows:</h2>
+
+<% current_shows = Nokogiri::HTML(open("https://playbill.com/productions?venue-type=broadway")) %>
+<p style="text-align: center">(click to select)</p>
+    <table style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <% current_shows.css("div.pb-pl-tile-box").each.with_index(1) do |box, i| %>
+                <td style="padding:15px">
+                    <form action="/playbills/new" method="POST">
+                        <input type="hidden" name="title" value="<%= box.css("div.pb-pl-tile-title").text.strip %>">
+                        <input type="hidden" name="show_url" value="https://playbill.com<%= box.children[1].attribute("href").text %>">
+                        <button type="submit" style="padding: 0; border: none; background: none;">
+                            <img src="<%=box.css('img').attribute('src')%>" width="150" title="<%= box.css("div.pb-pl-tile-title").text.strip %>">
+                        </button>
+                    </form>
+                </td>
+                <% if i % 4 == 0%>
+                    </tr><tr>
+                    <% end %>
+            <% end %>
+        </tr>
+    </table>
