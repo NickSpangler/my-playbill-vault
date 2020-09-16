@@ -58,4 +58,15 @@ class UsersController < ApplicationController
         end
       end
 
+      post '/send_request' do
+        if logged_in?
+            binding.pry
+            requested_friend = User.find_by(username: params[:username])
+            Request.create(user_id: requested_friend.id, requester_id: current_user.id)
+            redirect to "/friends"
+        else
+            redirect to "/login"
+        end
+      end
+
 end

@@ -21,7 +21,23 @@
         <h1>Add Friends</h1>
 
             <% User.all.sort{|a, b| a.username <=> b.username}.each do |user| %>
-                    <p style="text-align: left;"><%= user.username %><button style="padding: 1px">Send Request</button></p>
+                <% if user.username != current_user.username %>
+                    <form id="<%= user.username %>_request" action="/send_request" method="POST">
+                        <input type="hidden" name="username" value="<%= user.username %>">
+                    </form>
+
+                        <p style="text-align: left;">
+                            <%= user.username %>
+
+                            <% if !Request.all.find{ |request| request.user_id == user.id && request.requester_id == current_user.id } %>
+                                <button type="submit" form="<%= user.username %>_request" style="padding: 1px; float: right;" title="Add <%= user.username %> as a friend">Send Request</button>
+                            <% else %>
+                                <button style="padding: 1px; float: right;" title="Request Pending">Request Pending</button>
+                            <% end %>
+                        </p>
+                            
+                <% end%>
+                    
             <% end %>
     </div>
   </div>
