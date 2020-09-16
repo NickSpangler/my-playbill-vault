@@ -8,6 +8,43 @@
   <a href="/logout" style="padding:5px">Log Out</a>
 </div>
 
+<% if current_user.requests.length != 0 %>
+<br>
+<div>
+    <h3 style="text-align: center;">Pending Requests:</h3>
+
+    <table style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <% current_user.requests.each.with_index do |request, i| %>
+                <td style="padding:15px"> 
+
+                    <form action="/answer_request" method="POST" id="accept">
+                            <input type="hidden" name="response" value="accept">
+                            <input type="hidden" name="requester_id" value="<%= request.requester_id %>">
+                    </form>
+                    <form action="/answer_request" method="POST" id="decline">
+                            <input type="hidden" name="response" value="decline">
+                            <input type="hidden" name="requester_id" value="<%= request.requester_id %>">
+                    </form>
+
+                    <p><%= User.find_by(id: request.requester_id).username %>
+                        
+                        <button type="submit" form="decline" style="padding: 1px; float: right; margin-left: 5px;" title="Decline Request">Decline</button>
+                        <button type="submit" form="accept" style="padding: 1px; float: right; margin-left: 15px;" title="Accept Request">Accept</button>
+                        
+                    </p>
+                </td>
+                    <% if i % 4 == 0%>
+                        </tr><tr>
+                    <% end %>
+            <% end %>
+        </tr>
+    </table>
+
+</div>
+
+<% end %>
+
 <div class="float-container" style="display: flex; text-align:center">
 
   <div class="float-child" style="flex: 1;">
@@ -21,7 +58,7 @@
         <h1>Add Friends</h1>
 
             <% User.all.sort{|a, b| a.username <=> b.username}.each do |user| %>
-                <% if user.username != current_user.username %>
+                <% if user.username != current_user.username && !current_user.requests.find_by(requester_id: user.id) && !current_user.friends.find_by(friend_id: user.id)%>
                     <form id="<%= user.username %>_request" action="/send_request" method="POST">
                         <input type="hidden" name="username" value="<%= user.username %>">
                     </form>
