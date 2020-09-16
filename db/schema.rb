@@ -11,7 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200914150238) do
+ActiveRecord::Schema.define(version: 20200916153904) do
+
+  create_table "friends", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
+  end
 
   create_table "playbills", force: :cascade do |t|
     t.string  "title"
@@ -21,6 +26,11 @@ ActiveRecord::Schema.define(version: 20200914150238) do
     t.string  "review"
     t.boolean "favorite"
     t.integer "user_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "requester_id"
   end
 
   create_table "users", force: :cascade do |t|
