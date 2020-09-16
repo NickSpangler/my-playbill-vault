@@ -83,4 +83,23 @@ class UsersController < ApplicationController
         end
       end
 
+      post '/friends_collection' do
+        if logged_in?
+          @friend = User.find_by(id: params[:id])
+          erb :"users/friends_collection"
+        else
+          redirect to "/login"
+        end
+      end
+
+      post '/friends_playbill' do
+        if logged_in?
+          @playbill = Playbill.find_by(id: params[:id])
+          @friend = @playbill.user
+          erb :"users/friends_playbill"
+        else
+          redirect to "/login"
+        end
+      end
+
 end

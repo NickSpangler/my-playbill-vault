@@ -7,9 +7,9 @@
   <a href="/friends" style="padding:5px">Friends</a>
   <a href="/logout" style="padding:5px">Log Out</a>
 </div>
+<br>
 
 <% if current_user.requests.length != 0 %>
-<br>
 <div>
     <h3 style="text-align: center;">Pending Requests:</h3>
 
@@ -50,6 +50,34 @@
   <div class="float-child" style="flex: 1;">
     <div class="left">
         <h1>Your Friends</h1>
+
+
+        <div class="float-container-left">
+
+            <div class="float-child-left" style="width: 50%; float: left;">
+                <% @friends = [] %>
+        <% current_user.friends.each{|friend| @friends << User.find_by(id: friend.friend_id)} %>
+        <% @friends.sort{|a, b| a.username <=> b.username}.each do |friend| %>
+            <p>
+                <%= friend.username %>
+            </p>
+        <% end %>
+            </div>
+  
+            <div class="float-child-left" style="width: 50%; float: left;">
+                 <% @friends = [] %>
+        <% current_user.friends.each{|friend| @friends << User.find_by(id: friend.friend_id)} %>
+        <% @friends.sort{|a, b| a.username <=> b.username}.each do |friend| %>
+            <form action="/friends_collection" method="POST" id="<%= friend.username %>_collection">
+                <input type="hidden" name="id" value="<%= friend.id %>">
+            </form>
+            <p style="float: left;">
+                <button type="submit" form="<%= friend.username %>_collection" style="padding: 2px; float: left; margin-right: 15px;" title="View <%= friend.username %>'s' Collection">View <%= friend.username %>'s Collection</button>
+            </p>
+        <% end %>
+            </div>
+</div>
+        
     </div>
   </div>
   
