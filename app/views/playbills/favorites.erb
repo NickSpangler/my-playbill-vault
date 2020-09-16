@@ -10,7 +10,7 @@
 
 <table style="margin-left: auto; margin-right: auto;">
         <tr>
-            <% @user.playbills.order(performance_date: :desc).each.with_index(1) do |playbill, i| %>
+            <% @current_user.favorites.sort{|a, b| b.performance_date <=> a.performance_date }.each.with_index(1) do |playbill, i| %>
                 <td style="padding:15px">
                     <% if playbill.performance_date != "" %>
                     <p style="text-align:center"><%= Time.parse(playbill.performance_date).strftime("%B %d, %Y") %></p>

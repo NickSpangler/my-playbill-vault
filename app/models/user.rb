@@ -6,5 +6,8 @@ class User < ActiveRecord::Base
     validates :email, presence: true
     validates :email, uniqueness: true
     
+    def favorites
+        self.playbills.find_all{|playbill| playbill if playbill.favorite == true}
+    end
 end
   

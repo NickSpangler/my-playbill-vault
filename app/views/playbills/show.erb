@@ -40,9 +40,11 @@
     </div>
   </div>
 </div>
- <p style="text-align:center; padding:10px">
-            <button style="padding:5px; margin:5px">Edit Playbill</button><button type="submit" form="delete" style="padding:5px">Delete Playbill</button>
-            <form method="POST" action="/playbills/<%= @playbill.id %>" id="delete">
-            <input type="hidden" name="_method" value="DELETE">
-            </form>
-        </p>
+  <p style="text-align:center; padding:10px">
+    <a href="/playbills/<%= @playbill.id %>/edit"><button style="padding:5px; margin:5px">Edit Playbill</button></a>
+
+    <button type="submit" form="delete" style="padding:5px">Delete Playbill</button>
+      <form method="POST" action="/playbills/<%= @playbill.id %>" id="delete">
+        <input type="hidden" name="_method" value="DELETE">
+      </form>
+  </p>

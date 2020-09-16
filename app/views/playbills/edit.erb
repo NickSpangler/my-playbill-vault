@@ -1,0 +1,71 @@
+<h1 style="text-align: center;"><%= @current_user.username %>'s Playbill Vault:</h1>
+
+<div class="topnav" style="text-align:center">
+  <a href="/playbills" style="padding:5px">My Collection</a>
+  <a class="active" href="/playbills/new" style="padding:5px">Add New Playbill</a>
+  <a href="/friends" style="padding:5px">Friends</a>
+  <a href="/logout" style="padding:5px">Log Out</a>
+</div>
+
+<br>
+
+<h1 style="text-align: center;">Update Playbill Info:</h1>
+
+<br>
+
+<div class="float-container" style="display: flex;">
+
+  <div class="float-child" style="flex: 1;">
+    <div class="left">
+        <img src="<%= @playbill.image_url %>" width="400px">
+    </div>
+  </div>
+  
+  <div class="float-child"  style="flex: 1;">
+    <div class="right">
+        <form action="/playbills/<%= @playbill.id %>" method="POST" id="edit_playbill_form">
+            <input type="hidden" name="_method" value="PATCH">
+            <p>
+                <label for="title">Title:</label>
+                <input id="title" type="text" name="update[title]" value="<%= @playbill.title %>" size="35">
+            </p>
+
+            <p>
+                <input id="image_url" type="hidden" name="update[image_url]" value="<%= @playbill.image_url %>">
+            </p>
+
+            <p>
+                <label for="performance_date">Performance Date:</label>
+                <input id="performance_date" type="text" name="update[performance_date]" value="<%= @playbill.performance_date %>" placeholder="YYYY-MM-DD">
+            </p>
+
+            <p>
+                <label for="rating">Star Rating:</label>
+                <select id = "rating" name="update[rating]" value="<%= @playbill.rating %>">
+                    <option value = "5" <% if @playbill.rating == 5 %> selected <% end %>>5</option>
+                    <option value = "4" <% if @playbill.rating == 4 %> selected <% end %>>4</option>
+                    <option value = "3" <% if @playbill.rating == 3 %> selected <% end %>>3</option>
+                    <option value = "2" <% if @playbill.rating == 2 %> selected <% end %>>2</option>
+                    <option value = "1" <% if @playbill.rating == 1 %> selected <% end %>>1</option>
+                </select>
+             </p>
+
+             <p>
+                <label for="favorite">Add To Favorites?</label>
+                <select id = "favorite" name="update[favorite]" value="<%= @playbill.favorite %>">
+                    <option value = "false" <% if @playbill.favorite == false %> selected <% end %>>No</option>
+                    <option value = "true" <% if @playbill.favorite == true %> selected <% end %>>Yes</option>
+                </select>
+             </p>
+        </form>
+
+        <p><label for="review">My Review:</label></p>
+        <textarea id="review" name="update[review]" form="edit_playbill_form" cols="35" rows="27" placeholder="Update your review..."><%= @playbill.review %></textarea>
+
+        <p><form id="submit_button">
+            <input type="submit" form="edit_playbill_form" value="Update Playbill">
+        </form></p>
+    </div>
+  </div>
+  
+</div>

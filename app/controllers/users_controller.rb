@@ -50,4 +50,12 @@ class UsersController < ApplicationController
         redirect to "/"
       end
 
+      get '/friends' do
+        if logged_in?
+            erb :"users/friends"
+        else
+            redirect to "/login"
+        end
+      end
+
 end

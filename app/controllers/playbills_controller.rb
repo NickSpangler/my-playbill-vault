@@ -39,12 +39,37 @@ class PlaybillsController < ApplicationController
         end
       end
 
+    get '/favorites' do
+       if logged_in?
+        erb :"/playbills/favorites"
+       end
+    end
+
     get "/playbills/:id" do
         if logged_in?
             @playbill = current_user.playbills.find_by(id: params[:id])
             erb :"playbills/show"
         else
             redirect to "/login"
+        end
+    end
+
+    get '/playbills/:id/edit' do
+        if logged_in? 
+            @playbill = current_user.playbills.find_by(id: params[:id])
+            erb :"playbills/edit"
+        else
+            redirect to "/login"
+        end
+    end
+
+    patch '/playbills/:id' do
+        if logged_in?
+            @playbill = current_user.playbills.find_by(id: params[:id])
+            @playbill.update(params[:update])
+            redirect to "/playbills/#{@playbill.id}"
+        else
+            redirect to '/login'
         end
     end
 
