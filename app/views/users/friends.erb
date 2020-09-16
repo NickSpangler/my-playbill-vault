@@ -7,3 +7,22 @@
   <a href="/friends" style="padding:5px">Friends</a>
   <a href="/logout" style="padding:5px">Log Out</a>
 </div>
+
+<div class="float-container" style="display: flex; text-align:center">
+
+  <div class="float-child" style="flex: 1;">
+    <div class="left">
+        <h1>Your Friends</h1>
+    </div>
+  </div>
+  
+  <div class="float-child"  style="flex: 1;">
+    <div class="right">
+        <h1>Add Friends</h1>
+
+            <% User.all.sort{|a, b| a.username <=> b.username}.each do |user| %>
+                    <p style="text-align: left;"><%= user.username %><button style="padding: 1px">Send Request</button></p>
+            <% end %>
+    </div>
+  </div>
+</div>
