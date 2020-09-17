@@ -1,3 +1,8 @@
+<head>
+    <link rel="stylesheet" href="/stylesheets/index.css" type="text/css">
+</head>
+
+
 <h1 style="text-align:center;"><span style="font-family:PL Latin Bold">MY PLAYBILL VAULT</span></h1>
 <% site = "https://playbill.com/productions?venue-type=broadway" %>
 <% doc = Nokogiri::HTML(open(site)) %>
@@ -40,7 +45,74 @@
     </tr>
 </table>
 
-<nav style="text-align: center;">
-    <a href="/login"><button type="submit" title="Log In" style="padding: 0; border: none; background: none;"><img src="/images/Login Button.png" height="40px"></button></a>
-    <a href="/signup"><button type="submit" title="Sign Up" style="padding: 0; border: none; background: none;"><img src="/images/Signup Button.png" height="40px"></button></a>
-</nav>
+<div class="button_container" style="text-align: center;">
+    
+    <button onclick="document.getElementById('id01').style.display='block'" style="width: 90px;">Log In</button>
+  
+    <div id="id01" class="modal"> 
+        
+        <form class="modal-content animate" action="/login" method="POST"> 
+            <div class="imgcontainer"> 
+                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Window">×</span> 
+                <p style="font-family: PL Latin Bold; background-color: rgb(255, 204, 0);">Unlock your PLAYBILL vault:</p>
+                <img src= "/images/vault.jpg" alt="Avatar" class="avatar"> 
+            </div> 
+  
+            <div class="container"> 
+                <label><b>Username</b></label> 
+                <input type="text" placeholder="Enter Username" name="username" required> 
+  
+                <label><b>Password</b></label> 
+                <input type="password" placeholder="Enter Password" name="password" required> 
+  
+                <button type="submit">Login</button> 
+            </div> 
+  
+        </form> 
+    </div> 
+  
+    <script> 
+        var login_window = document.getElementById('id01'); 
+        window.onclick = function(event) { 
+            if (event.target == login_window) { 
+                login_window.style.display = "none"; 
+            } 
+        } 
+    </script> 
+
+    <button onclick="document.getElementById('id02').style.display='block'" style="width:90px;">Sign Up</button>
+  
+    <div id="id02" class="modal"> 
+        
+        <form class="modal-content animate" action="/signup" method="POST"> 
+            <div class="imgcontainer"> 
+                <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Window">×</span> 
+                <p style="font-family: PL Latin Bold; background-color: rgb(255, 204, 0);">Create your PLAYBILL vault:</p>
+                <img src= "/images/vault.jpg" alt="Avatar" class="avatar"> 
+            </div> 
+  
+            <div class="container"> 
+                <label><b>Username</b></label> 
+                <input type="text" placeholder="Enter Username" name="username" required> 
+  
+                <label><b>Email</b></label> 
+                <input type="text" placeholder="Enter Email" name="email" required> 
+
+                <label><b>Password</b></label> 
+                <input type="password" placeholder="Enter Password" name="password" required> 
+  
+                <button type="submit">Create Account</button> 
+            </div> 
+  
+        </form> 
+    </div> 
+  
+    <script> 
+        var signup_window = document.getElementById('id02'); 
+        window.onclick = function(event) { 
+            if (event.target == signup_window) { 
+                signup_window.style.display = "none"; 
+            } 
+        } 
+    </script> 
+</div>

@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
       get '/login' do
         if !logged_in?
-          erb :"users/login"
+          erb :"users/login_test"
         else
             redirect to '/playbills'
         end

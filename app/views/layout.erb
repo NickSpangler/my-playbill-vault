@@ -16,6 +16,19 @@
   <body>
     <div class="wrapper">
 
+        <% if logged_in? %>
+          <h1 style="text-align: center;"><%= @current_user.username %>'s Playbill Vault:</h1>
+
+<div class="topnav">
+  <a href="/playbills" <% if url =~ /\/playbills\/*\d*\z/ %> class="active" <% end %>>My Collection</a>
+  <a href="/playbills/new" <% if url =~ /\/playbills\/new\z/ || url =~ /\/search\z/ %> class="active" <% end %>>Add New Playbill</a>
+  <a href="/favorites" <% if url =~ /\/favorites\z/ %> class="active" <% end %>>Favorites</a>
+  <a href="/friends" <% if url =~ /\/friends\z/ || url =~ /\/friends_collection\z/ || url =~ /\/friends_playbill\z/ %> class="active" <% end %>>Friends</a>
+  <a href="/logout" style="float: right;">Log Out</a>
+</div>
+<br>
+
+        <% end %>
         <%= yield %>
 
       <footer class="branding">
@@ -30,3 +43,33 @@
     <![endif]-->
   </body>
 </html>
+
+<style>
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #333;
+  overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: rgb(255, 204, 0);
+  color: black;
+}
+</style>

@@ -1,15 +1,4 @@
-<h1 style="text-align: center;"><%= @current_user.username %>'s Playbill Vault:</h1>
-
-<div class="topnav" style="text-align:center">
-  <a class="active" href="/playbills" style="padding:5px">My Collection</a>
-  <a href="/playbills/new" style="padding:5px">Add New Playbill</a>
-  <a href="/favorites" style="padding:5px">Favorites</a>
-  <a href="/friends" style="padding:5px">Friends</a>
-  <a href="/logout" style="padding:5px">Log Out</a>
-</div>
-
-<br>
-    <p>
+<p>
         <form action="/playbills/search" method="POST">
             <label for="search">Search:</label>
             <input id="search" type="text" name="search" placeholder="Search again..." size="40">
