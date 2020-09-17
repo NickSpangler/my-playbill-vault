@@ -1,16 +1,24 @@
 <table style="margin-left: auto; margin-right: auto;">
         <tr>
-            <% @user.playbills.order(performance_date: :desc).each.with_index(1) do |playbill, i| %>
+            <% @playbills.each.with_index(1) do |playbill, i| %>
                 <td style="padding:15px">
-                    <% if playbill.performance_date != "" %>
-                    <p style="text-align:center"><%= Time.parse(playbill.performance_date).strftime("%B %d, %Y") %></p>
-                    <% else %>
-                    <p style="text-align:center">Once Upon a Time...</p>
+
+                    <% if current_user.dates %>
+                        <% if playbill.performance_date != "" %>
+                        <p style="text-align:center"><%= Time.parse(playbill.performance_date).strftime("%B %d, %Y") %></p>
+                        <% else %>
+                        <p style="text-align:center">Once Upon a Time...</p>
+                        <% end %>
                     <% end %>
+
                     <a href="/playbills/<%= playbill.id %>" title="<%= playbill.title %>">
                         <img src="<%= playbill.image_url %>" width="150">
                     </a>
+
+                    <% if current_user.stars %>
                     <div><img src = "/images/stars/<%= playbill.rating.to_s %>_stars.png" style="height:30px;"></div>
+                    <% end %>
+                    
                 </td>
                 <% if i % 4 == 0%>
                     </tr><tr>

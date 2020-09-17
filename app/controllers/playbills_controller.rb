@@ -3,6 +3,18 @@ class PlaybillsController < ApplicationController
     get "/playbills" do
         @user = User.find_by(id: session[:user_id])
         if logged_in?
+            case current_user.order
+            when "date_new_to_old"
+                @playbills = current_user.playbills_new_to_old
+            when "date_old_to_new"
+                @playbills = current_user.playbills_old_to_new
+            when "rating_high_to_low"
+                @playbills = current_user.playbills_rating_high_to_low
+            when "rating_low_to_high"
+                @playbills = current_user.playbills_rating_low_to_high
+            when "alphabetically"
+                @playbills = current_user.playbills_alphabetically
+            end
             erb :"playbills/index"
         else
             redirect to '/login'
