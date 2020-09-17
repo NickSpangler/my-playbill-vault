@@ -4,7 +4,7 @@
         <input type="hidden" name="_method" value="PATCH">
 
         <label for="order">Order Collection By:</label>
-        <select id="order" name="order">
+        <select id="order" name="update[order]">
             <option value="date_new_to_old" <% if current_user.order == "date_new_to_old" %> selected <% end %>>Date: New to Old</option>
             <option value="date_old_to_new"> <% if current_user.order == "date_old_to_new" %> selected <% end %>Date: Old to New</option>
             <option value="rating_high_to_low" <% if current_user.order == "rating_high_to_low" %> selected <% end %>>Rating: High to Low</option>
@@ -14,13 +14,13 @@
         <br><br>
 
         <label for="stars" >Stars:</label>
-        <select id="stars" name="stars">
+        <select id="stars" name="update[stars]">
             <option value= true <% if current_user.stars == true %> selected <% end %>>On</option>
             <option value= false <% if current_user.stars == false %> selected <% end %>>Off</option>
         </select>
 
         <label for="dates" style="margin-left: 15px">Dates:</label>
-        <select id="dates" name="dates">
+        <select id="dates" name="update[dates]">
             <option value= true <% if current_user.dates == true %> selected <% end %>>On</option>
             <option value= false <% if current_user.dates == false %> selected <% end %>>Off</option>
         </select>

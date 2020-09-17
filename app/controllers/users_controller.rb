@@ -110,4 +110,13 @@ class UsersController < ApplicationController
         end
       end
 
+      patch '/settings' do
+        if logged_in?
+          current_user.update(params[:update])
+          redirect to "/playbills"
+        else
+          redirect to "/login"
+        end
+      end
+
 end
