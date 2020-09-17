@@ -1,0 +1,43 @@
+<div id='title'>
+    <h2>Display Settings</h2>
+    <form action="/settings" method="POST">
+        <input type="hidden" name="_method" value="PATCH">
+
+        <label for="order">Order Collection By:</label>
+        <select id="order" name="order">
+            <option value="date_new_to_old" <% if current_user.order == "date_new_to_old" %> selected <% end %>>Date: New to Old</option>
+            <option value="date_old_to_new"> <% if current_user.order == "date_old_to_new" %> selected <% end %>Date: Old to New</option>
+            <option value="rating_high_to_low" <% if current_user.order == "rating_high_to_low" %> selected <% end %>>Rating: High to Low</option>
+            <option value="rating_low_to_high" <% if current_user.order == "rating_low_to_high" %> selected <% end %>>Rating: Low to High</option>
+            <option value="alphabetically" <% if current_user.order == "alphabetically" %> selected <% end %>>Alphabetically</option>
+        </select>
+        <br><br>
+
+        <label for="stars" >Stars:</label>
+        <select id="stars" name="stars">
+            <option value= true <% if current_user.stars == true %> selected <% end %>>On</option>
+            <option value= false <% if current_user.stars == false %> selected <% end %>>Off</option>
+        </select>
+
+        <label for="dates" style="margin-left: 15px">Dates:</label>
+        <select id="dates" name="dates">
+            <option value= true <% if current_user.dates == true %> selected <% end %>>On</option>
+            <option value= false <% if current_user.dates == false %> selected <% end %>>Off</option>
+        </select>
+        <br><br>
+        <input type="submit" value="Update Settings">
+        
+
+
+    </form>
+</div>
+
+
+<style>
+    #title {
+    background-color: rgba(242, 208, 0, 0.3);
+    width: 50%;
+    text-align: center;
+    margin: auto;
+    }
+</style>

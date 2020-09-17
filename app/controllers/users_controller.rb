@@ -102,4 +102,12 @@ class UsersController < ApplicationController
         end
       end
 
+      get '/settings' do
+        if logged_in?
+          erb :"users/settings"
+        else
+          redirect to "/login"
+        end
+      end
+
 end

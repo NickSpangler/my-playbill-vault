@@ -17,16 +17,21 @@
     <div class="wrapper">
 
         <% if logged_in? %>
-          <h1 style="text-align: center;"><%= @current_user.username %>'s Playbill Vault:</h1>
+          <h1 style="text-align: center;"><%= @current_user.username %>'s Playbill Vault</h1>
 
-<div class="topnav">
-  <a href="/playbills" <% if url =~ /\/playbills\/*\d*\z/ %> class="active" <% end %>>My Collection</a>
-  <a href="/playbills/new" <% if url =~ /\/playbills\/new\z/ || url =~ /\/search\z/ %> class="active" <% end %>>Add New Playbill</a>
-  <a href="/favorites" <% if url =~ /\/favorites\z/ %> class="active" <% end %>>Favorites</a>
-  <a href="/friends" <% if url =~ /\/friends\z/ || url =~ /\/friends_collection\z/ || url =~ /\/friends_playbill\z/ %> class="active" <% end %>>Friends</a>
-  <a href="/logout" style="float: right;">Log Out</a>
-</div>
-<br>
+          <div class="topnav">
+              <a href="/playbills" <% if url =~ /\/playbills\/*\d*\z/ %> class="active" <% end %>>My Collection</a>
+              <a href="/playbills/new" <% if url =~ /\/playbills\/new\z/ || url =~ /\/search\z/ %> class="active" <% end %>>Add New Playbill</a>
+              <a href="/favorites" <% if url =~ /\/favorites\z/ %> class="active" <% end %>>Favorites</a>
+              <a href="/friends" <% if url =~ /\/friends\z/ || url =~ /\/friends_collection\z/ || url =~ /\/friends_playbill\z/ %> class="active" <% end %>>Friends</a>
+              <a href="/settings" <% if url =~ /\/settings\z/ %> class="active" <% end %>>Settings</a>
+              <a href="/logout" style="float: right;">Log Out</a>
+          </div>
+          <br> 
+
+          
+
+
 
         <% end %>
         <%= yield %>
@@ -72,4 +77,5 @@
   background-color: rgb(255, 204, 0);
   color: black;
 }
+
 </style>
