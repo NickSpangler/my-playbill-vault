@@ -19,6 +19,9 @@ class UsersController < ApplicationController
     post "/signup" do
         if !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
           @user = User.new(params)
+          @user.order = "date_new_to_old"
+          @user.dates = "true"
+          @user.stars = "true"
           @user.save
           session[:user_id] = @user.id
           redirect to "/playbills"
