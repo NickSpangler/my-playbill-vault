@@ -44,7 +44,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id
             redirect to '/playbills'
         else
-            redirect to "/signup"
+            redirect to "/"
         end
       end
 
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
         if logged_in?
             erb :"users/friends"
         else
-            redirect to "/login"
+            redirect to "/"
         end
       end
 
@@ -67,7 +67,7 @@ class UsersController < ApplicationController
             Request.create(user_id: requested_friend.id, requester_id: current_user.id)
             redirect to "/friends"
         else
-            redirect to "/login"
+            redirect to "/"
         end
       end
 
@@ -82,7 +82,7 @@ class UsersController < ApplicationController
             end
             redirect to "/friends"
         else
-            redirect to "/login"
+            redirect to "/"
         end
       end
 
@@ -91,7 +91,7 @@ class UsersController < ApplicationController
           @friend = User.find_by(id: params[:id])
           erb :"users/friends_collection"
         else
-          redirect to "/login"
+          redirect to "/"
         end
       end
 
@@ -101,7 +101,7 @@ class UsersController < ApplicationController
           @friend = @playbill.user
           erb :"users/friends_playbill"
         else
-          redirect to "/login"
+          redirect to "/"
         end
       end
 
@@ -109,7 +109,7 @@ class UsersController < ApplicationController
         if logged_in?
           erb :"users/settings"
         else
-          redirect to "/login"
+          redirect to "/"
         end
       end
 
@@ -118,7 +118,7 @@ class UsersController < ApplicationController
           current_user.update(params[:update])
           redirect to "/playbills"
         else
-          redirect to "/login"
+          redirect to "/"
         end
       end
 

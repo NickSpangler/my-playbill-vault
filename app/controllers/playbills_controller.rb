@@ -3,21 +3,25 @@ class PlaybillsController < ApplicationController
     get "/playbills" do
         @user = User.find_by(id: session[:user_id])
         if logged_in?
-            case current_user.order
-            when "date_new_to_old"
-                @playbills = current_user.playbills_new_to_old
-            when "date_old_to_new"
-                @playbills = current_user.playbills_old_to_new
-            when "rating_high_to_low"
-                @playbills = current_user.playbills_rating_high_to_low
-            when "rating_low_to_high"
-                @playbills = current_user.playbills_rating_low_to_high
-            when "alphabetically"
-                @playbills = current_user.playbills_alphabetically
+            if current_user.playbills.empty?
+                redirect to "/playbills/new"
+            else
+                case current_user.order
+                when "date_new_to_old"
+                    @playbills = current_user.playbills_new_to_old
+                when "date_old_to_new"
+                    @playbills = current_user.playbills_old_to_new
+                when "rating_high_to_low"
+                    @playbills = current_user.playbills_rating_high_to_low
+                when "rating_low_to_high"
+                    @playbills = current_user.playbills_rating_low_to_high
+                when "alphabetically"
+                    @playbills = current_user.playbills_alphabetically
+                end
+                erb :"playbills/index"
             end
-            erb :"playbills/index"
         else
-            redirect to '/login'
+            redirect to '/'
         end
     end
 
@@ -30,7 +34,7 @@ class PlaybillsController < ApplicationController
         if logged_in?
             erb :"playbills/new"
         else
-            redirect to "/login"
+            redirect to "/"
         end
     end
 
@@ -39,7 +43,7 @@ class PlaybillsController < ApplicationController
             @params = params
             erb :"playbills/create"
         else
-            redirect to "/login"
+            redirect to "/"
         end
     end
 
@@ -48,6 +52,8 @@ class PlaybillsController < ApplicationController
         @params = params
         if logged_in?
             erb :"playbills/search_results"
+        else
+            redirect to "/"
         end
       end
 
@@ -62,7 +68,7 @@ class PlaybillsController < ApplicationController
             @playbill = current_user.playbills.find_by(id: params[:id])
             erb :"playbills/show"
         else
-            redirect to "/login"
+            redirect to "/"
         end
     end
 
@@ -71,7 +77,7 @@ class PlaybillsController < ApplicationController
             @playbill = current_user.playbills.find_by(id: params[:id])
             erb :"playbills/edit"
         else
-            redirect to "/login"
+            redirect to "/"
         end
     end
 
@@ -81,17 +87,21 @@ class PlaybillsController < ApplicationController
             @playbill.update(params[:update])
             redirect to "/playbills/#{@playbill.id}"
         else
-            redirect to '/login'
+            redirect to '/'
         end
     end
 
     delete "/playbills/:id" do
-        @playbill = Playbill.find_by(id: params[:id])
-        if @playbill.user.id == current_user.id
-            @playbill.delete
-            redirect to "/playbills"
+        if logged_in?
+            @playbill = Playbill.find_by(id: params[:id])
+            if @playbill.user.id == current_user.id
+                @playbill.delete
+                redirect to "/playbills"
+            else
+                redirect to "/playbills"
+            end
         else
-            redirect to "/playbills"
+            redirect to '/'
         end
     end
     
