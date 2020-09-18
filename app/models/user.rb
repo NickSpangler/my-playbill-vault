@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
     validates :username, uniqueness: true
     validates :email, presence: true
     validates :email, uniqueness: true
+    validates_format_of :email, :with => /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
     
     def favorites
         self.playbills.find_all{|playbill| playbill if playbill.favorite == true}

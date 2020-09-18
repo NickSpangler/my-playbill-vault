@@ -1,3 +1,7 @@
+<head>
+    <link rel="stylesheet" href="/stylesheets/show.css" type="text/css">
+</head>
+
 <h1 style="text-align:center"><%= @playbill.title %></h1>
 <br>
 
@@ -30,11 +34,17 @@
     </div>
   </div>
 </div>
-  <p style="text-align:center; padding:10px">
-    <a href="/playbills/<%= @playbill.id %>/edit"><button style="padding:5px; margin:5px">Edit Playbill</button></a>
 
-    <button type="submit" form="delete" style="padding:5px">Delete Playbill</button>
+<br>
+
       <form method="POST" action="/playbills/<%= @playbill.id %>" id="delete">
         <input type="hidden" name="_method" value="DELETE">
       </form>
-  </p>
+
+          <div class="bottom_nav">
+              <a href="/playbills/<%= @playbill.id %>/edit"><button id="edit" type="submit">Edit Playbill</button></a>
+              <button id="delete" type="submit" form="delete">Delete Playbill</button>
+          </div>
+
+
+      

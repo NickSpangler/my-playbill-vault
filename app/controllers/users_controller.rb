@@ -1,41 +1,17 @@
 class UsersController < ApplicationController
 
-    get "/signup" do
-        if logged_in?
-            redirect to "/playbills"
-        else
-            erb :"users/signup"
-        end
-    end
-
-    get '/signup_error' do
-        if logged_in?
-            redirect to "/playbills"
-        else
-            erb :"/users/signup_error"
-        end
-      end
-
     post "/signup" do
-        if !params[:username].empty? && !params[:email].empty? && !params[:password].empty?
           @user = User.new(params)
           @user.order = "date_new_to_old"
           @user.dates = "true"
           @user.stars = "true"
-          @user.save
-          session[:user_id] = @user.id
-          redirect to "/playbills"
-        else
-          redirect to "/signup_error"
-        end
-      end
-
-      get '/login' do
-        if !logged_in?
-          erb :"users/login_test"
-        else
-            redirect to '/playbills'
-        end
+          if @user.save
+            session[:user_id] = @user.id
+            redirect to "/playbills"
+          else
+            @errors = @user.errors.full_messages.to_s
+            erb :index
+          end
       end
 
       post '/login' do
