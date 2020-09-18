@@ -18,6 +18,8 @@
             <% current_shows.css("div.pb-pl-tile-box").each.with_index(1) do |box, i| %>
                 <td style="padding:15px">
                     <form action="/playbills/new" method="POST">
+                        <% @image_title = "#{box.css("div.pb-pl-tile-title").text.strip} (#{Time.now.year})" %>
+                        <input type="hidden" name="image_title" value="<%= @image_title %>">
                         <input type="hidden" name="title" value="<%= box.css("div.pb-pl-tile-title").text.strip %>">
                         <input type="hidden" name="show_url" value="https://playbill.com<%= box.children[1].attribute("href").text %>">
                         <button type="submit" style="padding: 0; border: none; background: none;">

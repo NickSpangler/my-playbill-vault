@@ -17,6 +17,7 @@
                 <td style="padding:15px">
                     <% @title = box.css("div.bsp-list-promo-title a").text.strip %>
                     <form action="/playbills/new" method="POST">
+                        <input type="hidden" name="image_title" value="<%= @title %>">
                         <input type="hidden" name="title" value="<%= @title[/\A.{#{@title.size-7}}/] %>">
                         <input type="hidden" name="show_url" value="https://playbill.com<%= box.css("a").attribute("href").text %>">
                         <button type="submit" style="padding: 0; border: none; background: none;">
