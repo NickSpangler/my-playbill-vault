@@ -1,3 +1,7 @@
+<head>
+    <link rel="stylesheet" href="/stylesheets/show.css" type="text/css">
+</head>
+
 <h1 style="text-align: center;">Update Playbill Info:</h1>
 
 <br>
@@ -50,11 +54,12 @@
 
         <p><label for="review">My Review:</label></p>
         <textarea id="review" name="update[review]" form="edit_playbill_form" cols="35" rows="27" placeholder="Update your review..."><%= @playbill.review %></textarea>
-
-        <p><form id="submit_button">
-            <input type="submit" form="edit_playbill_form" value="Update Playbill">
-        </form></p>
     </div>
   </div>
   
 </div>
+<br>
+
+            <div class="bottom_nav">
+              <button type="submit" form="edit_playbill_form">Update Playbill</button>
+            </div>

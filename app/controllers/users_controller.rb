@@ -98,4 +98,13 @@ class UsersController < ApplicationController
         end
       end
 
+      delete '/settings' do
+        if logged_in?
+          delete_account(current_user)
+          redirect to "/"
+        else
+          redirect to "/"
+        end
+      end
+
 end

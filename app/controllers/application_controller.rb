@@ -30,6 +30,15 @@ class ApplicationController < Sinatra::Base
     def to_param(string)
       string.downcase.gsub(" ", "-")
     end
+
+    def delete_account(user)
+      user.playbills.destroy_all
+      user.friends.destroy_all
+      Friend.where(friend_id: user.id).destroy_all
+      user.requests.destroy_all
+      Request.where(requester_id: user.id).destroy_all
+      user.destroy
+    end
   end
 
 

@@ -80,7 +80,7 @@
                         <input type="hidden" name="username" value="<%= user.username %>">
                     </form>
 
-                        <p style="text-align: left;">
+                        <p style="text-align: left; margin-left: 100px">
                             <%= user.username %>
 
                             <% if !Request.all.find{ |request| request.user_id == user.id && request.requester_id == current_user.id } %>
