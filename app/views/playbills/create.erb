@@ -1,3 +1,7 @@
+<head>
+    <link rel="stylesheet" href="/stylesheets/show.css" type="text/css">
+</head>
+
 <h1 style="text-align: center;">Tell us about the show:</h1>
     <br>
 
@@ -51,13 +55,13 @@
 
         <p><label for="review">My Review:</label></p>
         <textarea id="review" name="review" form="playbill_form" cols="35" rows="27" placeholder="How was it...?"></textarea>
-
-        <p><form id="submit_button">
-            <input type="submit" form="playbill_form" value="Add To My Collection">
-        </form></p>
     </div>
   </div>
   
 </div>
+
+            <div class="bottom_nav">
+              <button type="submit" form="playbill_form">Add To My Collection</button>
+            </div>
 
 <%# <input type="hidden" name="image_url" value="<%= selected_show.css("img")[3].attribute("src").text %>
