@@ -11,4 +11,5 @@ ActiveRecord::Base.establish_connection(
 require './app/controllers/application_controller'
 require 'open-uri'
 require 'date'
+require 'down'
 require_all 'app'

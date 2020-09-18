@@ -26,6 +26,10 @@ class ApplicationController < Sinatra::Base
     def logout
       session.clear
     end
+
+    def to_param(string)
+      string.downcase.gsub(" ", "-")
+    end
   end
 
 
