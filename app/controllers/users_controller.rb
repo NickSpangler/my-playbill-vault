@@ -47,7 +47,7 @@ class UsersController < ApplicationController
       post '/answer_request' do
         if logged_in?
             if params[:response] == "accept"
-                Friend.create(user_id: current_user.id, friend_id: params[:requester_id])
+                current_user.friends.create(friend_id: params[:requester_id])
                 Friend.create(user_id: params[:requester_id], friend_id: current_user.id)
                 Request.find_by(user_id: current_user.id, requester_id: params[:requester_id]).delete
             else
