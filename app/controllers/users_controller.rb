@@ -37,7 +37,7 @@ class UsersController < ApplicationController
       post '/send_request' do
         if logged_in?
             requested_friend = User.find_by(username: params[:username])
-            Request.create(user_id: requested_friend.id, requester_id: current_user.id)
+            requested_friend.requests.create(requester_id: current_user.id)
             redirect to "/friends"
         else
             redirect to "/"
