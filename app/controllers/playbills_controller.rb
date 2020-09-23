@@ -59,8 +59,7 @@ class PlaybillsController < ApplicationController
     end
 
     get "/playbills/:id" do
-        if logged_in?
-            @playbill = current_user.playbills.find_by(id: params[:id])
+        if logged_in? && @playbill = current_user.playbills.find_by(id: params[:id])
             erb :"playbills/show"
         else
             redirect to "/"
