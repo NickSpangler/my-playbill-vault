@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="/stylesheets/show.css" type="text/css">
 </head>
 
-<h1 style="text-align:center"><%= @playbill.title %>          </h1>
+<h1 style="text-align:center"><%= @playbill.title %></h1>
 <br>
 
 <div class="float-container" style="display: flex;">
@@ -35,7 +35,7 @@
   </div>
 </div>
 
-<br>
+<br><br>
 
       <form method="POST" action="/playbills/<%= @playbill.id %>" id="delete">
         <input type="hidden" name="_method" value="DELETE">
