@@ -13,25 +13,24 @@ class User < ActiveRecord::Base
         self.playbills.find_all{|playbill| playbill if playbill.favorite == true}
     end
 
-    def playbills_new_to_old
+    def date_new_to_old
         self.playbills.order(performance_date: :desc)
     end
 
-    def playbills_old_to_new
+    def date_old_to_new
         self.playbills.order(performance_date: :asc)
     end
 
-    def playbills_rating_high_to_low
+    def rating_high_to_low
         self.playbills.order(rating: :desc)
     end
 
-    def playbills_rating_low_to_high
+    def rating_low_to_high
         self.playbills.order(rating: :asc)
     end
 
-    def playbills_alphabetically
+    def alphabetically
         self.playbills.order(title: :asc)
     end
 
 end
-  

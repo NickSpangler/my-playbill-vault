@@ -5,18 +5,7 @@ class PlaybillsController < ApplicationController
             if current_user.playbills.empty?
                 redirect to "/playbills/new"
             else
-                case current_user.order
-                when "date_new_to_old"
-                    @playbills = current_user.playbills_new_to_old
-                when "date_old_to_new"
-                    @playbills = current_user.playbills_old_to_new
-                when "rating_high_to_low"
-                    @playbills = current_user.playbills_rating_high_to_low
-                when "rating_low_to_high"
-                    @playbills = current_user.playbills_rating_low_to_high
-                when "alphabetically"
-                    @playbills = current_user.playbills_alphabetically
-                end
+                @playbills = current_user.send("#{current_user.order}")
                 erb :"playbills/index"
             end
         else
