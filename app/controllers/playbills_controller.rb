@@ -1,7 +1,6 @@
 class PlaybillsController < ApplicationController
 
     get "/playbills" do
-        @user = User.find_by(id: session[:user_id])
         if logged_in?
             if current_user.playbills.empty?
                 redirect to "/playbills/new"
