@@ -9,6 +9,7 @@ gem 'thin'
 gem 'bcrypt'
 gem 'nokogiri'
 gem 'down'
+gem 'foreman '
 
 group :development do
 gem 'sqlite3', '~> 1.3.6'
