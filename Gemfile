@@ -20,7 +20,7 @@ gem 'pry'
 end
 
 group :production do
-gem 'pg'
+gem 'pg', '~> 0.15'
 end
 
 group :test do
