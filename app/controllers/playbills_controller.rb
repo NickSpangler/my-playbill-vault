@@ -15,10 +15,11 @@ class PlaybillsController < ApplicationController
 
     post "/playbills" do
             tempfile = Down.download("#{params[:image_url]}")
-            image_path = "/Users/nickspangler/Flatiron/code/my-playbill-vault/public/images/downloaded_playbills/#{to_param(params[:image_title])}.jpeg"
-            # if !File.exist?("public/images/downloaded_playbills/#{to_param(params[:image_title])}.jpeg")
-            #     FileUtils.mv(tempfile.path, "#{image_path}")
-            # end
+            # image_path = "/Users/nickspangler/Flatiron/code/my-playbill-vault/public/images/downloaded_playbills/#{to_param(params[:image_title])}.jpeg"
+            image_path = "/public/images/downloaded_playbills/#{to_param(params[:image_title])}.jpeg"
+            if !File.exist?("public/images/downloaded_playbills/#{to_param(params[:image_title])}.jpeg")
+                FileUtils.mv(tempfile.path, "#{image_path}")
+            end
             params[:image_url] = "/images/downloaded_playbills/#{to_param(params[:image_title])}.jpeg"
             params.tap { |param| param.delete(:image_title) }
             @playbill = current_user.playbills.create(params)
