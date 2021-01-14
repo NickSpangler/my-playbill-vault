@@ -22,9 +22,11 @@ class PlaybillsController < ApplicationController
             # end
 
             client = FilestackClient.new(ENV['API_KEY'])
-            filelink = client.upload(external_url: "#{params[:image_url]}")
+            filelink = client.upload(external_url: "#{params[:image_url]}", options: { filename: "#{to_param(params[:image_title])}.jpeg" })
             binding.pry
-            params[:image_url] = "/images/downloaded_playbills/#{to_param(params[:image_title])}.jpeg"
+            
+            # params[:image_url] = "/images/downloaded_playbills/#{to_param(params[:image_title])}.jpeg"
+            params[:image_url] = "https://cdn.filestackcontent.com/#{filelink.handle}"
             params.tap { |param| param.delete(:image_title) }
             @playbill = current_user.playbills.create(params)
             redirect to "/playbills/#{@playbill.id}"
