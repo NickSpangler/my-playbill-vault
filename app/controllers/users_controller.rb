@@ -87,7 +87,6 @@ class UsersController < ApplicationController
       end
 
       patch '/settings' do
-        binding.pry
         if logged_in?
           current_user.update(params[:update])
           redirect to "/playbills"
