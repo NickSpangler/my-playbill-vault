@@ -11,6 +11,7 @@ gem 'nokogiri'
 gem 'down'
 gem 'foreman'
 gem 'dotenv'
+gem 'filestack'
 
 group :development do
 gem 'sqlite3', '~> 1.3.6'
