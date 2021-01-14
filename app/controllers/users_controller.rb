@@ -87,6 +87,7 @@ class UsersController < ApplicationController
       end
 
       patch '/settings' do
+        binding.pry
         if logged_in?
           current_user.update(params[:update])
           redirect to "/playbills"
@@ -96,6 +97,7 @@ class UsersController < ApplicationController
       end
 
       delete '/settings' do
+        # binding.pry
         if logged_in?
           delete_account(current_user)
           redirect to "/"

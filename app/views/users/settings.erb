@@ -10,7 +10,7 @@
         <label for="order">Order Collection By:</label>
         <select id="order" name="update[order]">
             <option value="date_new_to_old" <% if current_user.order == "date_new_to_old" %> selected <% end %>>Date: New to Old</option>
-            <option value="date_old_to_new"> <% if current_user.order == "date_old_to_new" %> selected <% end %>Date: Old to New</option>
+            <option value="date_old_to_new" <% if current_user.order == "date_old_to_new" %> selected <% end %>>Date: Old to New</option>
             <option value="rating_high_to_low" <% if current_user.order == "rating_high_to_low" %> selected <% end %>>Rating: High to Low</option>
             <option value="rating_low_to_high" <% if current_user.order == "rating_low_to_high" %> selected <% end %>>Rating: Low to High</option>
             <option value="alphabetically" <% if current_user.order == "alphabetically" %> selected <% end %>>Alphabetically</option>
@@ -42,7 +42,7 @@
     <button onclick="document.getElementById('id01').style.display='block'">Delete Account</button>
 
 <div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <%# <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
   <form class="modal-content" action="/action_page.php">
     <div class="container">
       <h1>Delete Account</h1>
@@ -57,7 +57,17 @@
         <button type="submit" class="deletebtn" form="delete">Delete</button>
       </div>
     </div>
-  </form>
+  </form> %>
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <br><br><br>
+  <h3 style='color: white;'>Are you sure you wish to delete your account?</h3>
+<br><br><br>
+<form action="/settings" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" class="delete_button" value="Delete My Account">
+</form>
+
+
 </div>
 
 
@@ -84,5 +94,10 @@
     width: 50%;
     text-align: center;
     margin: auto;
+    }
+    .delete_button {
+        height: 50px;
+        width: 200px;
+        color: red;
     }
 </style>
