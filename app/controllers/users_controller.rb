@@ -96,7 +96,6 @@ class UsersController < ApplicationController
       end
 
       delete '/settings' do
-        # binding.pry
         if logged_in?
           delete_account(current_user)
           redirect to "/"
